@@ -1,0 +1,720 @@
+{
+  "IMPORTS": [
+    [
+      "SNMPv2-SMI",
+      [
+        "OBJECT-TYPE",
+        "MODULE-IDENTITY",
+        "NOTIFICATION-TYPE",
+        "Integer32",
+        "Unsigned32",
+        "enterprises"
+      ]
+    ],
+    [
+      "SNMPv2-CONF",
+      [
+        "OBJECT-GROUP",
+        "NOTIFICATION-GROUP",
+        "MODULE-COMPLIANCE"
+      ]
+    ],
+    [
+      "SNMPv2-TC",
+      [
+        "TEXTUAL-CONVENTION",
+        "TruthValue",
+        "TimeStamp",
+        "DateAndTime"
+      ]
+    ],
+    [
+      "SNMP-FRAMEWORK-MIB",
+      [
+        "SnmpAdminString"
+      ]
+    ]
+  ],
+  "ilomSystemMIB": {
+    "tp": "MODULE-IDENTITY",
+    "value": [
+      "singlesystem",
+      4
+    ]
+  },
+  "sun": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "enterprises",
+      42
+    ]
+  },
+  "products": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "sun",
+      2
+    ]
+  },
+  "management": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "products",
+      2
+    ]
+  },
+  "singlesystem": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "management",
+      6
+    ]
+  },
+  "ilomSystemMIBObjects": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "ilomSystemMIB",
+      1
+    ]
+  },
+  "ilomSystemTraps": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "ilomSystemMIB",
+      2
+    ]
+  },
+  "ilomSystemConformance": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "ilomSystemMIB",
+      3
+    ]
+  },
+  "ilomSystemTrapData": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "ilomSystemMIB",
+      4
+    ]
+  },
+  "ilomSystemOpenProblems": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "ilomSystemMIBObjects",
+      1
+    ]
+  },
+  "ilomSystemLog": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "ilomSystemMIBObjects",
+      2
+    ]
+  },
+  "ilomSystemCompliances": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "ilomSystemConformance",
+      1
+    ]
+  },
+  "ilomSystemGroups": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "ilomSystemConformance",
+      2
+    ]
+  },
+  "IlomSystemUuidString": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "OCTET STRING"
+    },
+    "display_hint": null
+  },
+  "IlomSystemSubsystemTC": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "none",
+        "2": "cooling",
+        "3": "processors",
+        "4": "memory",
+        "5": "power",
+        "6": "storage",
+        "7": "network",
+        "8": "iomodule",
+        "9": "blade",
+        "10": "dcu",
+        "11": "cpumodule",
+        "12": "pcidevices",
+        "13": "ord",
+        "99": "unknown"
+      }
+    },
+    "display_hint": null
+  },
+  "ilomSystemOpenProblemsLastChangeTime": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "TimeStamp"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblems",
+      1
+    ]
+  },
+  "ilomSystemOpenProblemsCount": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Unsigned32"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblems",
+      2
+    ]
+  },
+  "ilomSystemOpenProblemsTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF ILOMSystemOpenProblemsEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblems",
+      10
+    ]
+  },
+  "ilomSystemOpenProblemsEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "ILOMSystemOpenProblemsEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "ilomSystemOpenProblemUUID",
+      "ilomSystemOpenProblemSuspectIndex"
+    ],
+    "value": [
+      "ilomSystemOpenProblemsTable",
+      1
+    ]
+  },
+  "ILOMSystemOpenProblemsEntry": {
+    "tp": "SEQUENCE"
+  },
+  "ilomSystemOpenProblemUUID": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "IlomSystemUuidString"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblemsEntry",
+      1
+    ]
+  },
+  "ilomSystemOpenProblemTimestamp": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "DateAndTime"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblemsEntry",
+      2
+    ]
+  },
+  "ilomSystemOpenProblemSubsystem": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "IlomSystemSubsystemTC"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblemsEntry",
+      3
+    ]
+  },
+  "ilomSystemOpenProblemLocation": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblemsEntry",
+      4
+    ]
+  },
+  "ilomSystemOpenProblemDescription": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "OCTET STRING"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblemsEntry",
+      5
+    ]
+  },
+  "ilomSystemOpenProblemProbability": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Integer32"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblemsEntry",
+      6
+    ]
+  },
+  "ilomSystemOpenProblemPartNumber": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblemsEntry",
+      7
+    ]
+  },
+  "ilomSystemOpenProblemSerialNumber": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblemsEntry",
+      8
+    ]
+  },
+  "ilomSystemOpenProblemReferenceDocument": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblemsEntry",
+      9
+    ]
+  },
+  "ilomSystemOpenProblemResource": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblemsEntry",
+      10
+    ]
+  },
+  "ilomSystemOpenProblemSuspectIndex": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Integer32"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblemsEntry",
+      11
+    ]
+  },
+  "ilomSystemOpenProblemsTimeTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF ILOMSystemOpenProblemsTimeEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblems",
+      11
+    ]
+  },
+  "ilomSystemOpenProblemsTimeEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "ILOMSystemOpenProblemsTimeEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "ilomSystemOpenProblemTimeIndex",
+      "ilomSystemOpenProblemUUID"
+    ],
+    "value": [
+      "ilomSystemOpenProblemsTimeTable",
+      1
+    ]
+  },
+  "ILOMSystemOpenProblemsTimeEntry": {
+    "tp": "SEQUENCE"
+  },
+  "ilomSystemOpenProblemTimeIndex": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Unsigned32"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblemsTimeEntry",
+      1
+    ]
+  },
+  "ilomSystemOpenProblemTime": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Unsigned32"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblemsTimeEntry",
+      2
+    ]
+  },
+  "ilomSystemOpenProblemTimeUUID": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "IlomSystemUuidString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemOpenProblemsTimeEntry",
+      3
+    ]
+  },
+  "ilomSystemLogCount": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Unsigned32"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemLog",
+      1
+    ]
+  },
+  "ilomSystemLogLastID": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Unsigned32"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemLog",
+      2
+    ]
+  },
+  "ilomSystemLogClear": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "TruthValue"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "ilomSystemLog",
+      3
+    ]
+  },
+  "ilomSystemLogTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF SystemLogEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "ilomSystemLog",
+      10
+    ]
+  },
+  "ilomSystemLogEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SystemLogEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "ilomSystemLogRecordID"
+    ],
+    "value": [
+      "ilomSystemLogTable",
+      1
+    ]
+  },
+  "SystemLogEntry": {
+    "tp": "SEQUENCE"
+  },
+  "ilomSystemLogRecordID": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Unsigned32"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "ilomSystemLogEntry",
+      1
+    ]
+  },
+  "ilomSystemLogTimestamp": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "DateAndTime"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemLogEntry",
+      2
+    ]
+  },
+  "ilomSystemLogSubsystem": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemLogEntry",
+      3
+    ]
+  },
+  "ilomSystemLogComponent": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemLogEntry",
+      4
+    ]
+  },
+  "ilomSystemLogDescription": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "OCTET STRING"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "ilomSystemLogEntry",
+      5
+    ]
+  },
+  "ilomSystemTrapProductManufacturer": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "ilomSystemTrapData",
+      1
+    ]
+  },
+  "ilomSystemTrapProductName": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "ilomSystemTrapData",
+      2
+    ]
+  },
+  "ilomSystemTrapProductSerialNumber": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "ilomSystemTrapData",
+      3
+    ]
+  },
+  "ilomSystemTrapProductPartNumber": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "ilomSystemTrapData",
+      4
+    ]
+  },
+  "ilomSystemTrapChassisManufacturer": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "ilomSystemTrapData",
+      5
+    ]
+  },
+  "ilomSystemTrapChassisName": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "ilomSystemTrapData",
+      6
+    ]
+  },
+  "ilomSystemTrapChassisSerialNumber": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "ilomSystemTrapData",
+      7
+    ]
+  },
+  "ilomSystemTrapChassisPartNumber": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "ilomSystemTrapData",
+      8
+    ]
+  },
+  "ilomSystemTrapTopProductManufacturer": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "ilomSystemTrapData",
+      9
+    ]
+  },
+  "ilomSystemTrapTopProductName": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "ilomSystemTrapData",
+      10
+    ]
+  },
+  "ilomSystemTrapTopProductSerialNumber": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "ilomSystemTrapData",
+      11
+    ]
+  },
+  "ilomSystemTrapTopProductPartNumber": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "ilomSystemTrapData",
+      12
+    ]
+  },
+  "ilomSystemTrapSystemIdentifier": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "ilomSystemTrapData",
+      13
+    ]
+  },
+  "ilomSystemTrapPrefix": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "ilomSystemTraps",
+      0
+    ]
+  },
+  "ilomSystemObjectsGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "ilomSystemGroups",
+      2
+    ]
+  },
+  "ilomSystemTrapDataGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "ilomSystemGroups",
+      3
+    ]
+  },
+  "ilomSystemObsoletedObjectsGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "ilomSystemGroups",
+      5
+    ]
+  }
+}

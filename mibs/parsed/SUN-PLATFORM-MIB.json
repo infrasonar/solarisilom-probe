@@ -1,0 +1,2833 @@
+{
+  "IMPORTS": [
+    [
+      "SNMPv2-SMI",
+      [
+        "MODULE-IDENTITY",
+        "OBJECT-TYPE",
+        "NOTIFICATION-TYPE",
+        "OBJECT-IDENTITY",
+        "Integer32",
+        "Unsigned32",
+        "enterprises"
+      ]
+    ],
+    [
+      "SNMPv2-TC",
+      [
+        "TEXTUAL-CONVENTION",
+        "RowStatus",
+        "TestAndIncr",
+        "RowPointer",
+        "VariablePointer",
+        "TruthValue",
+        "TDomain",
+        "TAddress",
+        "DateAndTime"
+      ]
+    ],
+    [
+      "SNMPv2-CONF",
+      [
+        "MODULE-COMPLIANCE",
+        "OBJECT-GROUP",
+        "NOTIFICATION-GROUP"
+      ]
+    ],
+    [
+      "SNMP-FRAMEWORK-MIB",
+      [
+        "SnmpAdminString"
+      ]
+    ],
+    [
+      "ENTITY-MIB",
+      [
+        "entPhysicalEntry",
+        "entLogicalEntry",
+        "entLogicalIndex",
+        "entPhysicalIndex"
+      ]
+    ]
+  ],
+  "sun": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "enterprises",
+      42
+    ]
+  },
+  "products": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "sun",
+      2
+    ]
+  },
+  "sunFire": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "products",
+      70
+    ]
+  },
+  "sunPlatMIB": {
+    "tp": "MODULE-IDENTITY",
+    "value": [
+      "sunFire",
+      101
+    ]
+  },
+  "sunPlatMIBObjects": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "sunPlatMIB",
+      1
+    ]
+  },
+  "sunPlatMIBTraps": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "sunPlatMIB",
+      2
+    ]
+  },
+  "sunPlatMIBPhysicalObjects": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "sunPlatMIBObjects",
+      1
+    ]
+  },
+  "sunPlatMIBLogicalObjects": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "sunPlatMIBObjects",
+      2
+    ]
+  },
+  "sunPlatMIBLogs": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "sunPlatMIBObjects",
+      3
+    ]
+  },
+  "sunPlatMIBTrapPrefix": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "sunPlatMIBTraps",
+      0
+    ]
+  },
+  "sunPlatMIBTrapData": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "sunPlatMIBTraps",
+      1
+    ]
+  },
+  "sunPlatMIBConformances": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "sunPlatMIB",
+      3
+    ]
+  },
+  "sunPlatMIBCompliances": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "sunPlatMIBConformances",
+      1
+    ]
+  },
+  "sunPlatMIBGroups": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "sunPlatMIBConformances",
+      2
+    ]
+  },
+  "sunPlatMIBObjectGroups": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "sunPlatMIBGroups",
+      1
+    ]
+  },
+  "sunPlatMIBNotifGroups": {
+    "tp": "OBJECT IDENTIFIER",
+    "value": [
+      "sunPlatMIBGroups",
+      2
+    ]
+  },
+  "SunPlatLogAdministrativeState": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "locked",
+        "2": "unlocked"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatAdministrativeState": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "locked",
+        "2": "unlocked",
+        "3": "shuttingDown"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatOperationalState": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "disabled",
+        "2": "enabled"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatAlarmPerceivedSeverity": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "indeterminate",
+        "2": "critical",
+        "3": "major",
+        "4": "minor",
+        "5": "warning",
+        "6": "cleared"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatAlarmStatus": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "critical",
+        "2": "major",
+        "3": "minor",
+        "4": "indeterminate",
+        "5": "warning",
+        "6": "pending",
+        "7": "cleared"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatEquipmentHolderType": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "bay",
+        "2": "shelf",
+        "3": "drawer",
+        "4": "slot",
+        "5": "rack"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatEquipmentHolderStatus": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "holderEmpty",
+        "2": "inTheAcceptableList",
+        "3": "notInTheAcceptableList",
+        "4": "unknownType"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatEquipmentHolderPower": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "other",
+        "2": "unknown",
+        "3": "powerOff",
+        "4": "powerOn"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatCircuitPackAvailabilityStatus": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "BITS",
+      "values": {
+        "0": "inTest",
+        "1": "failed",
+        "2": "powerOff",
+        "3": "offLine",
+        "4": "offDuty",
+        "5": "dependency",
+        "6": "degraded",
+        "7": "notInstalled"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatProbableCause": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "aIS",
+        "2": "callSetUpFailure",
+        "3": "degradedSignal",
+        "4": "farEndReceiverFailure",
+        "5": "framingError",
+        "6": "lossOfFrame",
+        "7": "lossOfPointer",
+        "8": "lossOfSignal",
+        "9": "payloadTypeMismatch",
+        "10": "transmissionError",
+        "11": "remoteAlarmInterface",
+        "12": "excessiveBER",
+        "13": "pathTraceMismatch",
+        "14": "unavailable",
+        "15": "signalLabelMismatch",
+        "16": "lossOfMultiFrame",
+        "17": "receiveFailure",
+        "18": "transmitFailure",
+        "19": "modulationFailure",
+        "20": "demodulationFailure",
+        "21": "broadcastChannelFailure",
+        "22": "connectionEstablishmentError",
+        "23": "invalidMessageReceived",
+        "24": "localNodeTransmissionError",
+        "25": "remoteNodeTransmissionError",
+        "26": "routingFailure",
+        "51": "backplaneFailure",
+        "52": "dataSetProblem",
+        "53": "equipmentIdentifierDuplication",
+        "54": "externalIFDeviceProblem",
+        "55": "lineCardProblem",
+        "56": "multiplexerProblem",
+        "57": "nEIdentifierDuplication",
+        "58": "powerProblem",
+        "59": "processorProblem",
+        "60": "protectionPathFailure",
+        "61": "receiverFailure",
+        "62": "replaceableUnitMissing",
+        "63": "replaceableUnitTypeMismatch",
+        "64": "synchronizationSourceMismatch",
+        "65": "terminalProblem",
+        "66": "timingProblem",
+        "67": "transmitterFailure",
+        "68": "trunkCardProblem",
+        "69": "replaceableUnitProblem",
+        "70": "realTimeClockFailure",
+        "71": "antennaFailure",
+        "72": "batteryChargingFailure",
+        "73": "diskFailure",
+        "74": "frequencyHoppingFailure",
+        "75": "iODeviceError",
+        "76": "lossOfSynchronisation",
+        "77": "lossOfRedundancy",
+        "78": "powerSupplyFailure",
+        "79": "signalQualityEvaluationFailure",
+        "80": "tranceiverFailure",
+        "81": "protectionMechanismFailure",
+        "82": "protectingResourceFailure",
+        "101": "airCompressorFailure",
+        "102": "airConditioningFailure",
+        "103": "airDryerFailure",
+        "104": "batteryDischarging",
+        "105": "batteryFailure",
+        "106": "commercialPowerFailure",
+        "107": "coolingFanFailure",
+        "108": "engineFailure",
+        "109": "fireDetectorFailure",
+        "110": "fuseFailure",
+        "111": "generatorFailure",
+        "112": "lowBatteryThreshold",
+        "113": "pumpFailure",
+        "114": "rectifierFailure",
+        "115": "rectifierHighVoltage",
+        "116": "rectifierLowFVoltage",
+        "117": "ventilationsSystemFailure",
+        "118": "enclosureDoorOpen",
+        "119": "explosiveGas",
+        "120": "fire",
+        "121": "flood",
+        "122": "highHumidity",
+        "123": "highTemperature",
+        "124": "highWind",
+        "125": "iceBuildUp",
+        "126": "intrusionDetection",
+        "127": "lowFuel",
+        "128": "lowHumidity",
+        "129": "lowCablePressure",
+        "130": "lowTemperature",
+        "131": "lowWater",
+        "132": "smoke",
+        "133": "toxicGas",
+        "134": "coolingSystemFailure",
+        "135": "externalEquipmentFailure",
+        "136": "externalPointFailure",
+        "151": "storageCapacityProblem",
+        "152": "memoryMismatch",
+        "153": "corruptData",
+        "154": "outOfCPUCycles",
+        "155": "sfwrEnvironmentProblem",
+        "156": "sfwrDownloadFailure",
+        "157": "lossOfRealTime",
+        "158": "reinitialized",
+        "159": "applicationSubsystemFailure",
+        "160": "configurationOrCustomisationError",
+        "161": "databaseInconsistency",
+        "162": "fileError",
+        "163": "outOfMemory",
+        "164": "softwareError",
+        "165": "timeoutExpired",
+        "166": "underlayingResourceUnavailable",
+        "167": "versionMismatch",
+        "201": "bandwidthReduced",
+        "202": "congestion",
+        "203": "excessiveErrorRate",
+        "204": "excessiveResponseTime",
+        "205": "excessiveRetransmissionRate",
+        "206": "reducedLoggingCapability",
+        "207": "systemResourcesOverload",
+        "255": "other",
+        "256": "adapterError",
+        "257": "callEstablishmentError",
+        "258": "communicationsProtocolError",
+        "259": "communicationsSubsystemFailure",
+        "260": "configurationOrCustomizationError",
+        "261": "cpuCyclesLimitExceeded",
+        "262": "dataSetOrModemError",
+        "263": "dteDceInterfaceError",
+        "264": "equipmentMalfunction",
+        "265": "excessiveVibration",
+        "266": "fireDetected",
+        "267": "floodDetected",
+        "268": "heatingVentCoolingSystemProblem",
+        "269": "humidityUnacceptable",
+        "270": "inputOutputDeviceError",
+        "271": "inputDeviceError",
+        "272": "lanError",
+        "273": "leakDetected",
+        "274": "materialSupplyExhausted",
+        "275": "ouputDeviceError",
+        "276": "performanceDegraded",
+        "277": "pressureUnacceptable",
+        "278": "queueSizeExceeded",
+        "279": "resourceAtOrNearingCapacity",
+        "280": "responseTimeExecessive",
+        "281": "retransmissionRateExcessive",
+        "282": "softwareProgramAbnormallyTerminated",
+        "283": "softwareProgramError",
+        "284": "temperatureUnacceptable",
+        "285": "thresholdCrossed",
+        "286": "toxicLeakDetected",
+        "287": "underlyingResourceUnavailable",
+        "288": "authenticationFailure",
+        "289": "breachOfConfidentiality",
+        "290": "cableTamper",
+        "291": "delayedInformation",
+        "292": "denialOfService",
+        "293": "duplicateInformation",
+        "294": "informationMissing",
+        "295": "informationModificationDetected",
+        "296": "informationOutOfSequence",
+        "297": "keyExpired",
+        "298": "nonRepudiationFailure",
+        "299": "outOfHoursActivity",
+        "300": "outOfService",
+        "301": "proceduralError",
+        "302": "unauthorizedAccessAttempt",
+        "303": "unexpectedInformation"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatPhysicalClass": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "other",
+        "2": "alarm",
+        "3": "watchdog"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatSensorClass": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "binary",
+        "2": "numeric",
+        "3": "discrete"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatSensorType": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "other",
+        "2": "unknown",
+        "3": "temperature",
+        "4": "voltage",
+        "5": "electricCurrent",
+        "6": "tachometer",
+        "7": "counter",
+        "8": "switch",
+        "9": "lock",
+        "10": "humidity",
+        "11": "smokeDetection",
+        "12": "presence",
+        "13": "airFlow"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatBaseUnits": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "other",
+        "2": "unknown",
+        "3": "degC",
+        "4": "degF",
+        "5": "degK",
+        "6": "volts",
+        "7": "amps",
+        "8": "watts",
+        "9": "joules",
+        "10": "coulombs",
+        "11": "va",
+        "12": "nits",
+        "13": "lumens",
+        "14": "lux",
+        "15": "candelas",
+        "16": "kPa",
+        "17": "psi",
+        "18": "newtons",
+        "19": "cfm",
+        "20": "rpm",
+        "21": "hertz",
+        "22": "seconds",
+        "23": "minutes",
+        "24": "hours",
+        "25": "days",
+        "26": "weeks",
+        "27": "mils",
+        "28": "inches",
+        "29": "feet",
+        "30": "cubicInches",
+        "31": "cubicFeet",
+        "32": "meters",
+        "33": "cubicCentimeters",
+        "34": "cubicMeters",
+        "35": "liters",
+        "36": "fluidOunces",
+        "37": "radians",
+        "38": "steradians",
+        "39": "revolutions",
+        "40": "cycles",
+        "41": "gravities",
+        "42": "ounces",
+        "43": "pounds",
+        "44": "footPounds",
+        "45": "ounceInches",
+        "46": "gauss",
+        "47": "gilberts",
+        "48": "henries",
+        "49": "farads",
+        "50": "ohms",
+        "51": "siemens",
+        "52": "moles",
+        "53": "becquerels",
+        "54": "ppm",
+        "55": "decibels",
+        "56": "dBA",
+        "57": "dbC",
+        "58": "grays",
+        "59": "sieverts",
+        "60": "colorTemperatureDegK",
+        "61": "bits",
+        "62": "bytes",
+        "63": "words",
+        "64": "doubleWords",
+        "65": "quadWords",
+        "66": "percentage"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatRateUnits": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "none",
+        "2": "perMicroSecond",
+        "3": "perMilliSecond",
+        "4": "perSecond",
+        "5": "perMinute",
+        "6": "perHour",
+        "7": "perDay",
+        "8": "perWeek",
+        "9": "perMonth",
+        "10": "perYear"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatNumericSensorEnabledThresholds": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "BITS",
+      "values": {
+        "0": "lowerThresholdNonCritical",
+        "1": "upperThresholdNonCritical",
+        "2": "lowerThresholdCritical",
+        "3": "upperThresholdCritical",
+        "4": "lowerThresholdFatal",
+        "5": "upperThresholdFatal"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatNumericSensorThresholdResetAction": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "reset"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatAlarmType": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "other",
+        "2": "audible",
+        "3": "visible",
+        "4": "motion",
+        "5": "switch"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatAlarmState": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "unknown",
+        "2": "off",
+        "3": "steady",
+        "4": "alternating"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatAlarmUrgency": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "unknown",
+        "2": "other",
+        "3": "notSupported",
+        "4": "informational",
+        "5": "nonCritical",
+        "6": "critical",
+        "7": "unrecoverable"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatWatchdogAction": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "statusOnly",
+        "2": "systemInterrupt",
+        "3": "systemReset",
+        "4": "systemPowerOff",
+        "5": "systemPowerCycle"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatWatchdogMonitoredEntity": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "unknown",
+        "2": "other",
+        "3": "operatingSystem",
+        "4": "operatingSystemBootProcess",
+        "5": "operatingSystemShutdownProcess",
+        "6": "firmwareBootProcess",
+        "7": "biosBootProcess",
+        "8": "application",
+        "9": "serviceProcessor"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatPowerSupplyClass": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "other",
+        "2": "powerSupply",
+        "3": "battery"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatFanClass": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "other",
+        "2": "fan",
+        "3": "refrigeration",
+        "4": "heatPipe"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatBatteryStatus": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "other",
+        "2": "unknown",
+        "3": "fullyCharged",
+        "4": "low",
+        "5": "critical",
+        "6": "charging",
+        "7": "chargingAndHigh",
+        "8": "chargingAndLow",
+        "9": "chargingAndCritical",
+        "10": "undefined",
+        "11": "partiallyCharged"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatUnitaryComputerSystemPowerState": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "unknown",
+        "2": "fullPower",
+        "3": "psLowPower",
+        "4": "psStandby",
+        "5": "psOther",
+        "6": "powerCycle",
+        "7": "powerOff",
+        "8": "psWarning",
+        "9": "hibernate",
+        "10": "softOff",
+        "11": "reset"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatUnitaryComputerSystemApplicableSetting": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "defaultSetting",
+        "2": "specifiedSetting"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatLogicalClass": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "other",
+        "2": "computerSystem",
+        "3": "adminDomain"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatLogicalStatus": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER",
+      "values": {
+        "1": "ok",
+        "2": "error",
+        "3": "degraded",
+        "4": "unknown",
+        "5": "predFail",
+        "6": "starting",
+        "7": "stopping",
+        "8": "service",
+        "9": "stressed",
+        "10": "nonRecover",
+        "11": "noContact",
+        "12": "lostComm",
+        "13": "stopped"
+      }
+    },
+    "display_hint": null
+  },
+  "SunPlatIndex": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER"
+    },
+    "display_hint": null
+  },
+  "SunPlatPercentage": {
+    "tp": "TEXTUAL-CONVENTION",
+    "syntax": {
+      "tp": "INTEGER"
+    },
+    "display_hint": null
+  },
+  "sunPlatStartTime": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "DateAndTime"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      1
+    ]
+  },
+  "sunPlatEquipmentTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatEquipmentEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      2
+    ]
+  },
+  "sunPlatEquipmentEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatEquipmentEntry"
+    },
+    "access": "not-accessible",
+    "index": "entPhysicalEntry",
+    "value": [
+      "sunPlatEquipmentTable",
+      1
+    ]
+  },
+  "SunPlatEquipmentEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatEquipmentAdministrativeState": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatAdministrativeState"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatEquipmentEntry",
+      1
+    ]
+  },
+  "sunPlatEquipmentOperationalState": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatOperationalState"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatEquipmentEntry",
+      2
+    ]
+  },
+  "sunPlatEquipmentAlarmStatus": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatAlarmStatus"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatEquipmentEntry",
+      3
+    ]
+  },
+  "sunPlatEquipmentUnknownStatus": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "TruthValue"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatEquipmentEntry",
+      4
+    ]
+  },
+  "sunPlatEquipmentLocationName": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatEquipmentEntry",
+      5
+    ]
+  },
+  "sunPlatEquipmentHolderTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatEquipmentHolderEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      3
+    ]
+  },
+  "sunPlatEquipmentHolderEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatEquipmentHolderEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entPhysicalIndex"
+    ],
+    "value": [
+      "sunPlatEquipmentHolderTable",
+      1
+    ]
+  },
+  "SunPlatEquipmentHolderEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatEquipmentHolderType": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatEquipmentHolderType"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatEquipmentHolderEntry",
+      1
+    ]
+  },
+  "sunPlatEquipmentHolderAcceptableTypes": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatEquipmentHolderEntry",
+      2
+    ]
+  },
+  "sunPlatEquipmentHolderStatus": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatEquipmentHolderStatus"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatEquipmentHolderEntry",
+      3
+    ]
+  },
+  "sunPlatEquipmentHolderPowered": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatEquipmentHolderPower"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatEquipmentHolderEntry",
+      4
+    ]
+  },
+  "sunPlatCircuitPackTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatCircuitPackEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      4
+    ]
+  },
+  "sunPlatCircuitPackEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatCircuitPackEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entPhysicalIndex"
+    ],
+    "value": [
+      "sunPlatCircuitPackTable",
+      1
+    ]
+  },
+  "SunPlatCircuitPackEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatCircuitPackType": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatCircuitPackEntry",
+      1
+    ]
+  },
+  "sunPlatCircuitPackAvailabilityStatus": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatCircuitPackAvailabilityStatus"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatCircuitPackEntry",
+      2
+    ]
+  },
+  "sunPlatCircuitPackReplaceable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "TruthValue"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatCircuitPackEntry",
+      3
+    ]
+  },
+  "sunPlatCircuitPackHotSwappable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "TruthValue"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatCircuitPackEntry",
+      4
+    ]
+  },
+  "sunPlatPhysicalTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatPhysicalEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      5
+    ]
+  },
+  "sunPlatPhysicalEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatPhysicalEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entPhysicalIndex"
+    ],
+    "value": [
+      "sunPlatPhysicalTable",
+      1
+    ]
+  },
+  "SunPlatPhysicalEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatPhysicalClass": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatPhysicalClass"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatPhysicalEntry",
+      1
+    ]
+  },
+  "sunPlatSensorTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatSensorEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      6
+    ]
+  },
+  "sunPlatSensorEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatSensorEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entPhysicalIndex"
+    ],
+    "value": [
+      "sunPlatSensorTable",
+      1
+    ]
+  },
+  "SunPlatSensorEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatSensorClass": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatSensorClass"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatSensorEntry",
+      1
+    ]
+  },
+  "sunPlatSensorType": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatSensorType"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatSensorEntry",
+      2
+    ]
+  },
+  "sunPlatSensorLatency": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Unsigned32"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatSensorEntry",
+      3
+    ]
+  },
+  "sunPlatBinarySensorTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatBinarySensorEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      7
+    ]
+  },
+  "sunPlatBinarySensorEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatBinarySensorEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entPhysicalIndex"
+    ],
+    "value": [
+      "sunPlatBinarySensorTable",
+      1
+    ]
+  },
+  "SunPlatBinarySensorEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatBinarySensorCurrent": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "TruthValue"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatBinarySensorEntry",
+      1
+    ]
+  },
+  "sunPlatBinarySensorExpected": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "TruthValue"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatBinarySensorEntry",
+      2
+    ]
+  },
+  "sunPlatBinarySensorInterpretTrue": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatBinarySensorEntry",
+      3
+    ]
+  },
+  "sunPlatBinarySensorInterpretFalse": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatBinarySensorEntry",
+      4
+    ]
+  },
+  "sunPlatNumericSensorTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatNumericSensorEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      8
+    ]
+  },
+  "sunPlatNumericSensorEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatNumericSensorEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entPhysicalIndex"
+    ],
+    "value": [
+      "sunPlatNumericSensorTable",
+      1
+    ]
+  },
+  "SunPlatNumericSensorEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatNumericSensorBaseUnits": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatBaseUnits"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      1
+    ]
+  },
+  "sunPlatNumericSensorExponent": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Integer32"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      2
+    ]
+  },
+  "sunPlatNumericSensorRateUnits": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatRateUnits"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      3
+    ]
+  },
+  "sunPlatNumericSensorCurrent": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Integer32"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      4
+    ]
+  },
+  "sunPlatNumericSensorNormalMin": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Integer32"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      5
+    ]
+  },
+  "sunPlatNumericSensorNormalMax": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Integer32"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      6
+    ]
+  },
+  "sunPlatNumericSensorAccuracy": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatPercentage"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      7
+    ]
+  },
+  "sunPlatNumericSensorLowerThresholdNonCritical": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Integer32"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      8
+    ]
+  },
+  "sunPlatNumericSensorUpperThresholdNonCritical": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Integer32"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      9
+    ]
+  },
+  "sunPlatNumericSensorLowerThresholdCritical": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Integer32"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      10
+    ]
+  },
+  "sunPlatNumericSensorUpperThresholdCritical": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Integer32"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      11
+    ]
+  },
+  "sunPlatNumericSensorLowerThresholdFatal": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Integer32"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      12
+    ]
+  },
+  "sunPlatNumericSensorUpperThresholdFatal": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Integer32"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      13
+    ]
+  },
+  "sunPlatNumericSensorHysteresis": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Unsigned32"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      14
+    ]
+  },
+  "sunPlatNumericSensorEnabledThresholds": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatNumericSensorEnabledThresholds"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      15
+    ]
+  },
+  "sunPlatNumericSensorRestoreDefaultThresholds": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatNumericSensorThresholdResetAction"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatNumericSensorEntry",
+      16
+    ]
+  },
+  "sunPlatDiscreteSensorTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF SunPlatDiscreteSensorEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      9
+    ]
+  },
+  "sunPlatDiscreteSensorEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatDiscreteSensorEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entPhysicalIndex"
+    ],
+    "value": [
+      "sunPlatDiscreteSensorTable",
+      1
+    ]
+  },
+  "SunPlatDiscreteSensorEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatDiscreteSensorCurrent": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatIndex"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatDiscreteSensorEntry",
+      1
+    ]
+  },
+  "sunPlatDiscreteSensorStatesTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF SunPlatDiscreteSensorStatesEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      10
+    ]
+  },
+  "sunPlatDiscreteSensorStatesEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatDiscreteSensorStatesEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entPhysicalIndex",
+      "sunPlatDiscreteSensorStatesIndex"
+    ],
+    "value": [
+      "sunPlatDiscreteSensorStatesTable",
+      1
+    ]
+  },
+  "SunPlatDiscreteSensorStatesEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatDiscreteSensorStatesIndex": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatIndex"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatDiscreteSensorStatesEntry",
+      1
+    ]
+  },
+  "sunPlatDiscreteSensorStatesInterpretation": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatDiscreteSensorStatesEntry",
+      2
+    ]
+  },
+  "sunPlatDiscreteSensorStatesAcceptable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "TruthValue"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatDiscreteSensorStatesEntry",
+      3
+    ]
+  },
+  "sunPlatFanTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatFanEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      11
+    ]
+  },
+  "sunPlatFanEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatFanEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entPhysicalIndex"
+    ],
+    "value": [
+      "sunPlatFanTable",
+      1
+    ]
+  },
+  "SunPlatFanEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatFanClass": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatFanClass"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatFanEntry",
+      1
+    ]
+  },
+  "sunPlatAlarmTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatAlarmEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      12
+    ]
+  },
+  "sunPlatAlarmEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatAlarmEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entPhysicalIndex"
+    ],
+    "value": [
+      "sunPlatAlarmTable",
+      1
+    ]
+  },
+  "SunPlatAlarmEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatAlarmType": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatAlarmType"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatAlarmEntry",
+      1
+    ]
+  },
+  "sunPlatAlarmState": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatAlarmState"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatAlarmEntry",
+      2
+    ]
+  },
+  "sunPlatAlarmUrgency": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatAlarmUrgency"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatAlarmEntry",
+      3
+    ]
+  },
+  "sunPlatWatchdogTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatWatchdogEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      13
+    ]
+  },
+  "sunPlatWatchdogEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatWatchdogEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entPhysicalIndex"
+    ],
+    "value": [
+      "sunPlatWatchdogTable",
+      1
+    ]
+  },
+  "SunPlatWatchdogEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatWatchdogTimeout": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Unsigned32"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatWatchdogEntry",
+      1
+    ]
+  },
+  "sunPlatWatchdogAction": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatWatchdogAction"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatWatchdogEntry",
+      2
+    ]
+  },
+  "sunPlatWatchdogLastExpired": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "DateAndTime"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatWatchdogEntry",
+      3
+    ]
+  },
+  "sunPlatWatchdogMonitoredEntity": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatWatchdogMonitoredEntity"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatWatchdogEntry",
+      4
+    ]
+  },
+  "sunPlatPowerSupplyTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF SunPlatPowerSupplyEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      14
+    ]
+  },
+  "sunPlatPowerSupplyEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatPowerSupplyEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entPhysicalIndex"
+    ],
+    "value": [
+      "sunPlatPowerSupplyTable",
+      1
+    ]
+  },
+  "SunPlatPowerSupplyEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatPowerSupplyClass": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatPowerSupplyClass"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatPowerSupplyEntry",
+      1
+    ]
+  },
+  "sunPlatBatteryTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF SunPlatBatteryEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBPhysicalObjects",
+      15
+    ]
+  },
+  "sunPlatBatteryEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatBatteryEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entPhysicalIndex"
+    ],
+    "value": [
+      "sunPlatBatteryTable",
+      1
+    ]
+  },
+  "SunPlatBatteryEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatBatteryStatus": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatBatteryStatus"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatBatteryEntry",
+      1
+    ]
+  },
+  "sunPlatLogicalTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF SunPlatLogicalEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBLogicalObjects",
+      1
+    ]
+  },
+  "sunPlatLogicalEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatLogicalEntry"
+    },
+    "access": "not-accessible",
+    "index": "entLogicalEntry",
+    "value": [
+      "sunPlatLogicalTable",
+      1
+    ]
+  },
+  "SunPlatLogicalEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatLogicalClass": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatLogicalClass"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogicalEntry",
+      1
+    ]
+  },
+  "sunPlatLogicalStatus": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatLogicalStatus"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogicalEntry",
+      2
+    ]
+  },
+  "sunPlatUnitaryComputerSystemTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF SunPlatUnitaryComputerSystemEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBLogicalObjects",
+      2
+    ]
+  },
+  "sunPlatUnitaryComputerSystemEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatUnitaryComputerSystemEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entLogicalIndex"
+    ],
+    "value": [
+      "sunPlatUnitaryComputerSystemTable",
+      1
+    ]
+  },
+  "SunPlatUnitaryComputerSystemEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatUnitaryComputerSystemPowerState": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatUnitaryComputerSystemPowerState"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatUnitaryComputerSystemEntry",
+      1
+    ]
+  },
+  "sunPlatUnitaryComputerSystemApplySettings": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatUnitaryComputerSystemApplicableSetting"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatUnitaryComputerSystemEntry",
+      2
+    ]
+  },
+  "sunPlatInitialLoadInfoTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF SunPlatInitialLoadInfoEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBLogicalObjects",
+      3
+    ]
+  },
+  "sunPlatInitialLoadInfoEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatInitialLoadInfoEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "entLogicalIndex",
+      "sunPlatInitialLoadInfoIndex"
+    ],
+    "value": [
+      "sunPlatInitialLoadInfoTable",
+      1
+    ]
+  },
+  "SunPlatInitialLoadInfoEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatInitialLoadInfoIndex": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatIndex"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatInitialLoadInfoEntry",
+      1
+    ]
+  },
+  "sunPlatInitialLoadInfoDescr": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatInitialLoadInfoEntry",
+      2
+    ]
+  },
+  "sunPlatInitialLoadInfoCurrentValue": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatInitialLoadInfoEntry",
+      3
+    ]
+  },
+  "sunPlatInitialLoadInfoDesiredValue": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatInitialLoadInfoEntry",
+      4
+    ]
+  },
+  "sunPlatLogTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatLogEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBLogs",
+      1
+    ]
+  },
+  "sunPlatLogEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatLogEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "sunPlatLogType"
+    ],
+    "value": [
+      "sunPlatLogTable",
+      1
+    ]
+  },
+  "SunPlatLogEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatLogType": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "OBJECT IDENTIFIER"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatLogEntry",
+      1
+    ]
+  },
+  "sunPlatLogAdministrativeState": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatLogAdministrativeState"
+    },
+    "access": "read-create",
+    "index": null,
+    "value": [
+      "sunPlatLogEntry",
+      2
+    ]
+  },
+  "sunPlatLogOperationalState": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatOperationalState"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogEntry",
+      3
+    ]
+  },
+  "sunPlatLogFullStatus": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "TruthValue"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogEntry",
+      4
+    ]
+  },
+  "sunPlatLogCapacityThreshold": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatPercentage"
+    },
+    "access": "read-create",
+    "index": null,
+    "value": [
+      "sunPlatLogEntry",
+      5
+    ]
+  },
+  "sunPlatLogRowStatus": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "RowStatus"
+    },
+    "access": "read-create",
+    "index": null,
+    "value": [
+      "sunPlatLogEntry",
+      6
+    ]
+  },
+  "sunPlatLogRecordTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatLogRecordEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBLogs",
+      2
+    ]
+  },
+  "sunPlatLogRecordEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatLogRecordEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "sunPlatLogType",
+      "sunPlatLogRecordId"
+    ],
+    "value": [
+      "sunPlatLogRecordTable",
+      1
+    ]
+  },
+  "SunPlatLogRecordEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatLogRecordId": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Unsigned32"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordEntry",
+      1
+    ]
+  },
+  "sunPlatLogRecordLoggingTime": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "DateAndTime"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordEntry",
+      2
+    ]
+  },
+  "sunPlatLogRecordManagedObjectInstance": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "RowPointer"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordEntry",
+      3
+    ]
+  },
+  "sunPlatLogRecordRowStatus": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "RowStatus"
+    },
+    "access": "read-write",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordEntry",
+      4
+    ]
+  },
+  "sunPlatLogRecordCorrelatedNotifications": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordEntry",
+      5
+    ]
+  },
+  "sunPlatLogRecordAdditionalTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatLogRecordAdditionalEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBLogs",
+      3
+    ]
+  },
+  "sunPlatLogRecordAdditionalEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatLogRecordAdditionalEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "sunPlatLogType",
+      "sunPlatLogRecordId"
+    ],
+    "value": [
+      "sunPlatLogRecordAdditionalTable",
+      1
+    ]
+  },
+  "SunPlatLogRecordAdditionalEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatLogRecordAdditionalInfo": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "OBJECT IDENTIFIER"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordAdditionalEntry",
+      1
+    ]
+  },
+  "sunPlatLogRecordAdditionalText": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordAdditionalEntry",
+      2
+    ]
+  },
+  "sunPlatLogRecordAlarmTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatLogRecordAlarmEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBLogs",
+      4
+    ]
+  },
+  "sunPlatLogRecordAlarmEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatLogRecordAlarmEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "sunPlatLogType",
+      "sunPlatLogRecordId"
+    ],
+    "value": [
+      "sunPlatLogRecordAlarmTable",
+      1
+    ]
+  },
+  "SunPlatLogRecordAlarmEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatLogRecordAlarmPerceivedSeverity": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatAlarmPerceivedSeverity"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordAlarmEntry",
+      1
+    ]
+  },
+  "sunPlatLogRecordAlarmProbableCause": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatProbableCause"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordAlarmEntry",
+      2
+    ]
+  },
+  "sunPlatLogRecordAlarmSpecificProblem": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordAlarmEntry",
+      3
+    ]
+  },
+  "sunPlatLogRecordAlarmRepairAction": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordAlarmEntry",
+      4
+    ]
+  },
+  "sunPlatLogRecordChangeTable": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SEQUENCE OF    SunPlatLogRecordChangeEntry"
+    },
+    "access": "not-accessible",
+    "index": null,
+    "value": [
+      "sunPlatMIBLogs",
+      5
+    ]
+  },
+  "sunPlatLogRecordChangeEntry": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatLogRecordChangeEntry"
+    },
+    "access": "not-accessible",
+    "index": [
+      "sunPlatLogType",
+      "sunPlatLogRecordId"
+    ],
+    "value": [
+      "sunPlatLogRecordChangeTable",
+      1
+    ]
+  },
+  "SunPlatLogRecordChangeEntry": {
+    "tp": "SEQUENCE"
+  },
+  "sunPlatLogRecordChangeChangedOID": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "VariablePointer"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordChangeEntry",
+      1
+    ]
+  },
+  "sunPlatLogRecordChangeNewInteger": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "INTEGER"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordChangeEntry",
+      2
+    ]
+  },
+  "sunPlatLogRecordChangeOldInteger": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "INTEGER"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordChangeEntry",
+      3
+    ]
+  },
+  "sunPlatLogRecordChangeNewString": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "OCTET STRING"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordChangeEntry",
+      4
+    ]
+  },
+  "sunPlatLogRecordChangeOldString": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "OCTET STRING"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordChangeEntry",
+      5
+    ]
+  },
+  "sunPlatLogRecordChangeNewOID": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "OBJECT IDENTIFIER"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordChangeEntry",
+      6
+    ]
+  },
+  "sunPlatLogRecordChangeOldOID": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "OBJECT IDENTIFIER"
+    },
+    "access": "read-only",
+    "index": null,
+    "value": [
+      "sunPlatLogRecordChangeEntry",
+      7
+    ]
+  },
+  "sunPlatNotificationEventId": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "Integer32"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      1
+    ]
+  },
+  "sunPlatNotificationTime": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "DateAndTime"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      2
+    ]
+  },
+  "sunPlatNotificationObject": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "RowPointer"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      3
+    ]
+  },
+  "sunPlatNotificationPerceivedSeverity": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatAlarmPerceivedSeverity"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      4
+    ]
+  },
+  "sunPlatNotificationProbableCause": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SunPlatProbableCause"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      5
+    ]
+  },
+  "sunPlatNotificationSpecificProblem": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      6
+    ]
+  },
+  "sunPlatNotificationRepairAction": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      7
+    ]
+  },
+  "sunPlatNotificationAdditionalInfo": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "OBJECT IDENTIFIER"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      8
+    ]
+  },
+  "sunPlatNotificationAdditionalText": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      9
+    ]
+  },
+  "sunPlatNotificationChangedOID": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "VariablePointer"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      10
+    ]
+  },
+  "sunPlatNotificationNewInteger": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "INTEGER"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      11
+    ]
+  },
+  "sunPlatNotificationOldInteger": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "INTEGER"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      12
+    ]
+  },
+  "sunPlatNotificationNewString": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "OCTET STRING"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      13
+    ]
+  },
+  "sunPlatNotificationOldString": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "OCTET STRING"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      14
+    ]
+  },
+  "sunPlatNotificationNewOID": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "OBJECT IDENTIFIER"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      15
+    ]
+  },
+  "sunPlatNotificationOldOID": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "OBJECT IDENTIFIER"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      16
+    ]
+  },
+  "sunPlatNotificationCorrelatedNotifications": {
+    "tp": "OBJECT-TYPE",
+    "syntax": {
+      "tp": "SnmpAdminString"
+    },
+    "access": "accessible-for-notify",
+    "index": null,
+    "value": [
+      "sunPlatMIBTrapData",
+      17
+    ]
+  },
+  "sunPlatGeneralGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      1
+    ]
+  },
+  "sunPlatEquipmentGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      2
+    ]
+  },
+  "sunPlatEquipmentHolderGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      3
+    ]
+  },
+  "sunPlatCircuitPackGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      4
+    ]
+  },
+  "sunPlatPhysicalGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      5
+    ]
+  },
+  "sunPlatSensorGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      6
+    ]
+  },
+  "sunPlatBinarySensorGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      7
+    ]
+  },
+  "sunPlatNumericSensorGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      8
+    ]
+  },
+  "sunPlatDiscreteSensorGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      9
+    ]
+  },
+  "sunPlatFanGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      10
+    ]
+  },
+  "sunPlatAlarmGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      11
+    ]
+  },
+  "sunPlatWatchdogGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      12
+    ]
+  },
+  "sunPlatPowerSupplyGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      13
+    ]
+  },
+  "sunPlatBatteryGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      14
+    ]
+  },
+  "sunPlatLogicalGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      15
+    ]
+  },
+  "sunPlatUnitaryComputerSystemGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      16
+    ]
+  },
+  "sunPlatLogGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      17
+    ]
+  },
+  "sunPlatLogRecordGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      18
+    ]
+  },
+  "sunPlatLogRecordAdditionalGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      19
+    ]
+  },
+  "sunPlatLogRecordAlarmGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      20
+    ]
+  },
+  "sunPlatLogRecordChangeGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      21
+    ]
+  },
+  "sunPlatNotificationObjectGroup": {
+    "tp": "OBJECT-GROUP",
+    "value": [
+      "sunPlatMIBObjectGroups",
+      22
+    ]
+  }
+}
