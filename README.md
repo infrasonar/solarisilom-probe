@@ -32,7 +32,13 @@ See the [SNMP probe](https://github.com/infrasonar/snmp-probe#config).
 ## Dry run
 
 Available checks:
+- `alarms`
+- `battery`
+- `fan`
+- `powerSupply`
+- `sensor`
 - `solarisilom`
+- `watchdog`
 
 Create a yaml file, for example _(test.yaml)_:
 
