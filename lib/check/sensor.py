@@ -43,7 +43,7 @@ def on_sensor(item: dict):
          'upperThresholdFatal'),
         ('sunPlatNumericSensorHysteresis', 'hysteresis'),
     ):
-        out[short] = out[name] * 10 ** exp
+        out[short] = item[name] * 10 ** exp
     return out
 
 
