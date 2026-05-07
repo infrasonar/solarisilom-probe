@@ -68,7 +68,6 @@ class CheckSensor(Check):
                 for oid, value in varbinds
             }
 
-        # TODO also cache this?
         sensor_lk = {
             s['name']: {
                 'class': s['sunPlatSensorClass'],
@@ -118,7 +117,6 @@ class CheckSensor(Check):
                 case 'rpm':
                     sensor_rpm.append({**s, **on_sensor(item)})
                 case _:
-                    # TODO IncompleteResultException?
                     logging.warn(f'Unsupported sensor base unit: {bu}')
 
         return {
