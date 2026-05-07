@@ -27,8 +27,6 @@ def on_sensor(item: dict):
     exp = item['sunPlatNumericSensorExponent']
     for name, short in (
         ('sunPlatNumericSensorCurrent', 'value'),
-        ('sunPlatNumericSensorNormalMin', 'normalMin'),
-        ('sunPlatNumericSensorNormalMax', 'normalMax'),
         ('sunPlatNumericSensorLowerThresholdNonCritical',
          'lowerThresholdNonCritical'),
         ('sunPlatNumericSensorUpperThresholdNonCritical',
