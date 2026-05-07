@@ -3,12 +3,13 @@ from asyncsnmplib.mib.mib_index import MIB_INDEX
 from libprobe.asset import Asset
 from libprobe.check import Check
 from ..snmpclient import get_snmp_client
-from ..snmpquery import snmpquery
+from ..snmpquery import snmpquery, snmpwalk
 
 QUERIES = (
     (MIB_INDEX['SUN-PLATFORM-MIB']['sunPlatSensorEntry'], True),
     (MIB_INDEX['SUN-PLATFORM-MIB']['sunPlatBinarySensorEntry'], True),
     (MIB_INDEX['SUN-PLATFORM-MIB']['sunPlatNumericSensorEntry'], True),
+    (MIB_INDEX['SUN-PLATFORM-MIB']['sunPlatAlarmEntry'], True),
 )
 
 ENTPHYSICALDESCR_OID = MIB_INDEX['ENTITY-MIB']['entPhysicalDescr']
@@ -61,13 +62,21 @@ class CheckSensor(Check):
             return {}
 
         if asset.id not in ENTITY_CACHE:
-            await snmp.connect()
-            varbinds = await snmp.walk(ENTPHYSICALDESCR_OID, True)
+            varbinds = await snmpwalk(snmp, ENTPHYSICALDESCR_OID)
             ENTITY_CACHE[asset.id] = {
                 # oid[-1] == entPhysicalIndex == item name
                 str(oid[-1]): value.decode('utf-8')
                 for oid, value in varbinds
             }
+
+        alarm_lk = {
+            s['name']: {
+                'alarmType': s['sunPlatAlarmType'],
+                'alarmState': s['sunPlatAlarmState'],
+                'alarmUrgency': s['sunPlatAlarmUrgency'],
+            }
+            for s in state['sunPlatAlarmEntry']
+        }
 
         sensor_lk = {
             s['name']: {
@@ -75,6 +84,7 @@ class CheckSensor(Check):
                 'type': s['sunPlatSensorType'],
                 'latency': s['sunPlatSensorLatency'],
                 'entityDescr': ENTITY_CACHE[asset.id].get(s['name']),
+                **alarm_lk.get(s['name'], {}),
             }
             for s in state['sunPlatSensorEntry']
         }

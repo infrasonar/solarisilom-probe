@@ -68,3 +68,36 @@ async def snmpquery(
         res = await _snmpquery(client, queries, strip_metric_prefix)
 
     return res
+
+
+async def _snmpwalk(
+    client: Snmp | SnmpV1 | SnmpV3,
+    oid: tuple[int, ...],
+) -> list[tuple[tuple[int, ...], Any]]:
+    try:
+        await client.connect()
+    except SnmpNoConnection:
+        raise
+    except SnmpNoAuthParams:
+        logging.warning('unable to connect: failed to set auth params')
+        raise
+    else:
+        result = await client.walk(oid, is_table=True)
+        return result
+    finally:
+        # safe to close whatever the connection status is
+        client.close()
+
+
+async def snmpwalk(
+    client: Snmp | SnmpV1 | SnmpV3,
+    oid: tuple[int, ...],
+) -> list[tuple[tuple[int, ...], Any]]:
+    try:
+        res = await _snmpwalk(client, oid)
+    except SnmpAuthV3Exception:
+        await asyncio.sleep(1.0)
+        # Retry...
+        res = await _snmpwalk(client, oid)
+
+    return res
