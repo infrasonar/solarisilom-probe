@@ -20,7 +20,7 @@ def on_sensor(item: dict):
         'name': item['name'],
         'accuracy': item['sunPlatNumericSensorAccuracy'],
         'enabledThresholds':
-            item['sunPlatNumericSensorEnabledThresholds'],
+            item['sunPlatNumericSensorEnabledThresholds'].split(','),
         'restoreDefaultThresholds':
             item['sunPlatNumericSensorRestoreDefaultThresholds'],
     }
