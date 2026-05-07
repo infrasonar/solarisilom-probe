@@ -9,7 +9,6 @@ QUERIES = (
     (MIB_INDEX['SUN-PLATFORM-MIB']['sunPlatSensorEntry'], True),
     (MIB_INDEX['SUN-PLATFORM-MIB']['sunPlatBinarySensorEntry'], True),
     (MIB_INDEX['SUN-PLATFORM-MIB']['sunPlatNumericSensorEntry'], True),
-    (MIB_INDEX['SUN-PLATFORM-MIB']['sunPlatAlarmEntry'], True),
 )
 
 ENTPHYSICALDESCR_OID = MIB_INDEX['ENTITY-MIB']['entPhysicalDescr']
@@ -69,22 +68,12 @@ class CheckSensor(Check):
                 for oid, value in varbinds
             }
 
-        alarm_lk = {
-            s['name']: {
-                'alarmType': s['sunPlatAlarmType'],
-                'alarmState': s['sunPlatAlarmState'],
-                'alarmUrgency': s['sunPlatAlarmUrgency'],
-            }
-            for s in state['sunPlatAlarmEntry']
-        }
-
         sensor_lk = {
             s['name']: {
                 'class': s['sunPlatSensorClass'],
                 'type': s['sunPlatSensorType'],
                 'latency': s['sunPlatSensorLatency'],
                 'entityDescr': ENTITY_CACHE[asset.id].get(s['name']),
-                **alarm_lk.get(s['name'], {}),
             }
             for s in state['sunPlatSensorEntry']
         }
