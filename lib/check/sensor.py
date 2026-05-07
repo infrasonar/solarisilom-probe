@@ -60,20 +60,20 @@ class CheckSensor(Check):
         if not any(state.values()):
             return {}
 
-        if asset.id not in ENTITY_CACHE:
-            varbinds = await snmp.walk(ENTPHYSICALDESCR_OID, False)
-            ENTITY_CACHE[asset.id] = {
-                # oid[-1] == entPhysicalIndex == item name
-                str(oid[-1]): value
-                for oid, value in varbinds
-            }
+        # if asset.id not in ENTITY_CACHE:
+        #     varbinds = await snmp.walk(ENTPHYSICALDESCR_OID, False)
+        #     ENTITY_CACHE[asset.id] = {
+        #         # oid[-1] == entPhysicalIndex == item name
+        #         str(oid[-1]): value
+        #         for oid, value in varbinds
+        #     }
 
         sensor_lk = {
             s['name']: {
                 'class': s['sunPlatSensorClass'],
                 'type': s['sunPlatSensorType'],
                 'latency': s['sunPlatSensorLatency'],
-                'entityDescr': ENTITY_CACHE[asset.id].get(s['name']),
+                # 'entityDescr': ENTITY_CACHE[asset.id].get(s['name']),
             }
             for s in state['sunPlatSensorEntry']
         }
