@@ -24,7 +24,7 @@ def on_sensor(item: dict):
         'restoreDefaultThresholds':
             item['sunPlatNumericSensorRestoreDefaultThresholds'],
     }
-    exp = item['sunPlatNumericSensorCurrent']
+    exp = item['sunPlatNumericSensorExponent']
     for name, short in (
         ('sunPlatNumericSensorCurrent', 'value'),
         ('sunPlatNumericSensorNormalMin', 'normalMin'),
@@ -55,6 +55,10 @@ class CheckSensor(Check):
     async def run(asset: Asset, local_config: dict, config: dict) -> dict:
 
         snmp = get_snmp_client(asset, local_config, config)
+        state = await snmpquery(snmp, QUERIES)
+
+        if not any(state.values()):
+            return {}
 
         if asset.id not in ENTITY_CACHE:
             varbinds = await snmp.walk(ENTPHYSICALDESCR_OID, False)
@@ -63,8 +67,6 @@ class CheckSensor(Check):
                 str(oid[-1]): value
                 for oid, value in varbinds
             }
-
-        state = await snmpquery(snmp, QUERIES)
 
         # TODO also cache this?
         sensor_lk = {
@@ -96,25 +98,28 @@ class CheckSensor(Check):
         sensor_watts = []
         sensor_rpm = []
         for item in state['sunPlatNumericSensorEntry']:
-            s = sensor_lk.get(item['name'])
-            if s:
-                item.update(s)
+            s = sensor_lk.get(item['name'], {})
+
+            ru = item['sunPlatNumericSensorRateUnits']
+            if ru != 'none':
+                logging.warn(f'Unsupported sensor rate unit: {ru}')
+                continue
 
             bu = item['sunPlatNumericSensorBaseUnits']
             match bu:
                 case 'degC':
-                    sensor_temperature.append(on_sensor(item))
+                    sensor_temperature.append({**s, **on_sensor(item)})
                 case 'amps':
-                    sensor_amps.append(on_sensor(item))
+                    sensor_amps.append({**s, **on_sensor(item)})
                 case 'volts':
-                    sensor_volts.append(on_sensor(item))
+                    sensor_volts.append({**s, **on_sensor(item)})
                 case 'watts':
-                    sensor_watts.append(on_sensor(item))
+                    sensor_watts.append({**s, **on_sensor(item)})
                 case 'rpm':
-                    sensor_rpm.append(on_sensor(item))
+                    sensor_rpm.append({**s, **on_sensor(item)})
                 case _:
                     # TODO IncompleteResultException?
-                    logging.warn(f'Unsupported sensor category: {bu}')
+                    logging.warn(f'Unsupported sensor base unit: {bu}')
 
         return {
             'sensorBinary': sensor_bin,
