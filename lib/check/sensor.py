@@ -81,9 +81,12 @@ class CheckSensor(Check):
         for item in state['sunPlatBinarySensorEntry']:
             current = item['sunPlatBinarySensorCurrent']
             expected = item['sunPlatBinarySensorExpected']
+            interpret_true = item['sunPlatBinarySensorInterpretTrue']
+            interpret_false = item['sunPlatBinarySensorInterpretFalse']
             sensor_bin.append({
                 'name': item['name'],
-                'value': current != expected,
+                'value': current == expected,
+                'info': interpret_true if current else interpret_false
                 **sensor_lk.get(item['name'], {}),
             })
 
