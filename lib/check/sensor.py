@@ -15,6 +15,38 @@ ENTPHYSICALDESCR_OID = MIB_INDEX['ENTITY-MIB']['entPhysicalDescr']
 ENTITY_CACHE = {}
 
 
+def on_sensor(item: dict):
+    out = {
+        'name': item['name'],
+        'accuracy': item['sunPlatNumericSensorAccuracy'],
+        'enabledThresholds':
+            item['sunPlatNumericSensorEnabledThresholds'],
+        'restoreDefaultThresholds':
+            item['sunPlatNumericSensorRestoreDefaultThresholds'],
+    }
+    exp = item['sunPlatNumericSensorCurrent']
+    for name, short in (
+        ('sunPlatNumericSensorCurrent', 'value'),
+        ('sunPlatNumericSensorNormalMin', 'normalMin'),
+        ('sunPlatNumericSensorNormalMax', 'normalMax'),
+        ('sunPlatNumericSensorLowerThresholdNonCritical',
+         'lowerThresholdNonCritical'),
+        ('sunPlatNumericSensorUpperThresholdNonCritical',
+         'upperThresholdNonCritical'),
+        ('sunPlatNumericSensorLowerThresholdCritical',
+         'lowerThresholdCritical'),
+        ('sunPlatNumericSensorUpperThresholdCritical',
+         'upperThresholdCritical'),
+        ('sunPlatNumericSensorLowerThresholdFatal',
+         'lowerThresholdFatal'),
+        ('sunPlatNumericSensorUpperThresholdFatal',
+         'upperThresholdFatal'),
+        ('sunPlatNumericSensorHysteresis', 'hysteresis'),
+    ):
+        out[short] = out[name] * 10 ** exp
+    return out
+
+
 class CheckSensor(Check):
     key = 'sensor'
     unchanged_eol = 14400
@@ -27,8 +59,8 @@ class CheckSensor(Check):
         if asset.id not in ENTITY_CACHE:
             varbinds = await snmp.walk(ENTPHYSICALDESCR_OID, False)
             ENTITY_CACHE[asset.id] = {
-                # oid[-2] == entPhysicalIndex == item name
-                str(oid[-2]): value
+                # oid[-1] == entPhysicalIndex == item name
+                str(oid[-1]): value
                 for oid, value in varbinds
             }
 
@@ -40,7 +72,7 @@ class CheckSensor(Check):
                 'class': s['sunPlatSensorClass'],
                 'type': s['sunPlatSensorType'],
                 'latency': s['sunPlatSensorLatency'],
-                'entity_name': ENTITY_CACHE[asset.id][s['name']],
+                'entityDescr': ENTITY_CACHE[asset.id].get(s['name']),
             }
             for s in state['sunPlatSensorEntry']
         }
@@ -61,22 +93,22 @@ class CheckSensor(Check):
         sensor_watts = []
         sensor_rpm = []
         for item in state['sunPlatNumericSensorEntry']:
-            sensor = {
-                'name': item['name'],
-                **sensor_lk.get(item['name'], {}),
-            }
+            s = sensor_lk.get(item['name'])
+            if s:
+                item.update(s)
+
             bu = item['sunPlatNumericSensorBaseUnits']
             match bu:
                 case 'degC':
-                    sensor_temperature.append(sensor)
+                    sensor_temperature.append(on_sensor(item))
                 case 'amps':
-                    sensor_amps.append(sensor)
+                    sensor_amps.append(on_sensor(item))
                 case 'volts':
-                    sensor_volts.append(sensor)
+                    sensor_volts.append(on_sensor(item))
                 case 'watts':
-                    sensor_watts.append(sensor)
+                    sensor_watts.append(on_sensor(item))
                 case 'rpm':
-                    sensor_rpm.append(sensor)
+                    sensor_rpm.append(on_sensor(item))
                 case _:
                     # TODO IncompleteResultException?
                     logging.warn(f'Unsupported sensor category: {bu}')
